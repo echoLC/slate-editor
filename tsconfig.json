@@ -12,6 +12,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules"
