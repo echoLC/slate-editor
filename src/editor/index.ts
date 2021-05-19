@@ -1,10 +1,16 @@
-import { Editor, Element, NodeEntry, Node, Range, Text, Transforms, Path } from 'slate'
+import EditorElement, { Element } from '../views/Element'
+
+type EditorOption = {
+  initValue?: Element[]
+}
 
 class SlateEditor {
   selector: string
+  private options: EditorOption | undefined
 
-  constructor(selector: string) {
+  constructor(selector: string, options?: EditorOption) {
     this.selector = selector
+    this.options = options
 
     this.createDom()
   }
@@ -35,22 +41,33 @@ class SlateEditor {
     div.setAttribute('data-slate-editable', 'true')
     div.className = 'slate-editable'
 
+    if (this.options?.initValue) {
+      this.options.initValue.forEach(value => {
+        const element = new EditorElement(value)
+        div.appendChild(element.$el)
+      })
+    }
+
     return div
   }
 
   private createToolbar() {
     const toolbarList = [
       {
-        label: '标题',
-        key: 'h',
+        label: 'H1',
+        key: 'h1',
+      },
+      {
+        label: 'H2',
+        key: 'h2',
       },
       {
         label: '加粗',
         key: 'bold',
       },
       {
-        label: '插入链接',
-        key: 'link',
+        label: '引用',
+        key: 'block-quote',
       },
     ]
 
