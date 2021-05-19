@@ -4,7 +4,7 @@ enum ElementType {
   h1 = 'h1',
   h2 = 'h2',
   paragraph = 'p',
-  blockQuote = 'block-quote',
+  blockQuote = 'blockquote',
 }
 
 export type Element = {
